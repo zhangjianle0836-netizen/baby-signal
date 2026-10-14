@@ -1,0 +1,27 @@
+{
+  "mode": "built-in image_gen",
+  "generation": [
+    {
+      "key": "place-phone",
+      "prompt": "Use case: illustration-story. Asset type: square instructional illustration for an accessible iPhone baby cry alert app for deaf mothers in mainland China. Primary request: show safe phone placement clearly, with a sleeping infant on their back in a bare firm-mattress crib at left, and a smartphone upright on a small separate bedside table outside the crib at right. There must be a clear gap between phone and crib, no wires within reach, no pillow blanket or toys in crib. Phone displays a simple microphone symbol, no words or letters. Adult-friendly warm editorial illustration, clean confident dark green outlines, soft cream background, muted sage green and warm peach accents, lightly textured paper, calm practical mood, simple large shapes that remain legible as a 100 px thumbnail. Square composition, full subjects uncropped with generous margins. No text, no numbers, no watermark, no headphones, no hearing aids, no medical monitoring devices, no symbols claiming the baby is safe."
+    },
+    {
+      "key": "wear-watch",
+      "prompt": "Use case: illustration-story. Asset type: square instructional illustration for an accessible iPhone baby cry alert app for deaf mothers in mainland China. Primary request: close-up of a Chinese mother's natural wrist and forearm wearing a dark rounded rectangular smartwatch comfortably snug against skin. Her other hand gently adjusts the wrist strap. Simple luminous bell icon on watch face and two clear small vibration arcs outside the watch show a tactile alert. Adult-friendly warm editorial illustration, clean confident dark green outlines, soft cream background, muted sage green and warm peach accents, lightly textured paper, calm practical mood, large simple forms legible as a 100 px thumbnail. Square composition, device is central, no extra hands, anatomically accurate fingers, no text, no letters, no numbers, no watermark, no false sign-language gestures, no headphones, no hearing aids."
+    },
+    {
+      "key": "check-baby",
+      "prompt": "Use case: illustration-story. Asset type: square instructional illustration for an accessible iPhone baby cry alert app for deaf mothers in mainland China. Primary request: Chinese mother with short dark hair in a sage green shirt, wearing a dark rounded rectangular smartwatch, responding to a tactile alert and gently holding her awake infant in her arms, looking attentively at baby's face. Support infant's head and neck correctly. Respectful independent capable adult parent, not a charity or disability stereotype. Adult-friendly warm editorial illustration, clean confident dark green outlines, soft cream background, muted sage green and warm peach accents, lightly textured paper, calm practical mood. Square composition, upper-body scene, faces and watch clear, generous margin, simple forms legible as a 100 px thumbnail. No text, no numbers, no watermark, no heart rate graphs, no hearing aids, no headphones, no sign-language gestures."
+    }
+  ],
+  "edits": [
+    {
+      "key": "wear-watch",
+      "prompt": "Edit this instructional illustration. Preserve exactly the mother's wrist, watch, watch bell, vibration arcs, hands, face, sage clothing, drawing style and cream palette. Replace ONLY the background crib, crying baby and patterned bedding on the right with a plain warm cream wall and a subtle muted green houseplant shape. This is a watch-wearing instruction, so no infant or crib should appear in the background. No text, no letters, no new objects or gestures."
+    },
+    {
+      "key": "check-baby",
+      "prompt": "Edit this instructional illustration. Preserve exactly the mother, naturally supported infant in her arms, all faces and hands, smartwatch, clothing, drawing style and warm cream palette. Remove ONLY the teddy bear, hanging mobile, and background crib and patterned bedding on the right, replacing them with a calm plain cream wall. Keep the small warm lamp and subtle plant on the left if present. This care illustration must not show toys, pillows or blankets in a crib. No text, no letters, no new gestures."
+    }
+  ]
+}

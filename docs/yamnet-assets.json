@@ -1,0 +1,27 @@
+{
+  "repository": "Yehor/YAMNet-CoreML",
+  "revision": "9681162a6618cceb548ee2a94e83bcfb3a141066",
+  "license": "Apache-2.0",
+  "files": [
+    {
+      "path": "BabySignal/Models/YAMNet.mlpackage/Data/com.apple.CoreML/model.mlmodel",
+      "bytes": 70188,
+      "sha256": "2f555c993e6632c3a1be43f87fa9ec44520c7697ebf3c27c5b17532f1f9c3a7d"
+    },
+    {
+      "path": "BabySignal/Models/YAMNet.mlpackage/Data/com.apple.CoreML/weights/weight.bin",
+      "bytes": 7462610,
+      "sha256": "39aee5b5261a4d27cab29a0cd0d272a8d949d456e551bb68c14182cafb78a8ea"
+    },
+    {
+      "path": "BabySignal/Models/YAMNet.mlpackage/Manifest.json",
+      "bytes": 617,
+      "sha256": "35cf235833dbde64dc3bccd117737f5dbafcfc18834e51ac971477f435a2e359"
+    },
+    {
+      "path": "BabySignal/Models/yamnet_model/assets/yamnet_class_map.csv",
+      "bytes": 14096,
+      "sha256": "cdf24d193e196d9e95912a2667051ae203e92a2ba09449218ccb40ef787c6df2"
+    }
+  ]
+}

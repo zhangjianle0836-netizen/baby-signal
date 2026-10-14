@@ -1,0 +1,6 @@
+# Keep third-party model bytes and the upstream checksum manifest reproducible.
+BabySignal/Models/** -text
+BabySignal/Models/yamnet_model/assets/yamnet_class_map.csv whitespace=cr-at-eol
+*.png binary
+*.mlmodel binary
+*.bin binary

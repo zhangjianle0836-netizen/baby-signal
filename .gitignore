@@ -1,0 +1,23 @@
+.build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+.DS_Store
+
+
+# Personal signing, device data and unpublished source material
+*.local.xcconfig
+*.mobileprovision
+*.provisionprofile
+*.p12
+*.p8
+*.key
+*.ipa
+.env
+.env.*
+*.log
+*.wav
+*.mp3
+*.m4a
+codex-clipboard-*.png
+.idea/
