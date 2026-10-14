@@ -1,5 +1,7 @@
 # 参与宝宝信号
 
+**简体中文** · [English](CONTRIBUTING.en.md)
+
 欢迎 Fork、修改和提交 Pull Request。请先阅读 README 的当前限制；本项目尚不是可依赖的夜间照护工具。
 
 ## 最有帮助的贡献

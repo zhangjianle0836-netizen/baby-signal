@@ -10,12 +10,12 @@ struct SignalEvent: Codable, Identifiable {
 
     var title: String {
       switch self {
-      case .notRequested: return "未安排闹钟"
-      case .scheduled: return "系统已安排闹钟"
-      case .alerting: return "系统闹钟已触发"
-      case .ended: return "系统闹钟已结束 · 未确认感知"
-      case .cancelled: return "已取消闹钟"
-      case .failed: return "闹钟安排失败"
+      case .notRequested: return L10n.text("未安排闹钟")
+      case .scheduled: return L10n.text("系统已安排闹钟")
+      case .alerting: return L10n.text("系统闹钟已触发")
+      case .ended: return L10n.text("系统闹钟已结束 · 未确认感知")
+      case .cancelled: return L10n.text("已取消闹钟")
+      case .failed: return L10n.text("闹钟安排失败")
       }
     }
   }
@@ -37,11 +37,11 @@ struct SignalEvent: Codable, Identifiable {
 
   var title: String {
     switch kind {
-    case .cry: return "检测到宝宝哭声"
-    case .test: return "提醒测试"
-    case .interruption: return "监测中断"
-    case .recovery: return "监测已恢复"
-    case .failure: return "监测未能继续"
+    case .cry: return L10n.text("检测到宝宝哭声")
+    case .test: return L10n.text("提醒测试")
+    case .interruption: return L10n.text("监测中断")
+    case .recovery: return L10n.text("监测已恢复")
+    case .failure: return L10n.text("监测未能继续")
     }
   }
 }

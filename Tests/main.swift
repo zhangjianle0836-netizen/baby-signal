@@ -38,6 +38,16 @@ expect(activityState.title(stale: true) == "监测已停止", "Stopped display r
 let activityRoundTrip = try JSONDecoder().decode(MonitoringActivityState.self, from: JSONEncoder().encode(activityState))
 expect(activityRoundTrip == activityState, "App and widget payload preserves status and timestamps")
 
+let englishBundle = Bundle(path: "Shared/Localization/en.lproj")!
+let chineseBundle = Bundle(path: "Shared/Localization/zh-Hans.lproj")!
+expect(L10n.text("快速恢复监测", bundle: englishBundle) == "Resume monitoring", "English recovery action is localized")
+expect(L10n.text("监测中断，请打开 App", bundle: englishBundle).contains("interrupted"), "English activity warning preserves interruption meaning")
+expect(L10n.text("快速恢复监测", bundle: chineseBundle) == "快速恢复监测", "Chinese recovery action is preserved")
+expect(L10n.format("闹钟安排失败：%@", "example", bundle: englishBundle) == "The alarm could not be scheduled: example", "Formatted English errors preserve their argument")
+expect(L10n.storedText("Monitoring interrupted", bundle: chineseBundle) == "监测中断", "Historical English fixed descriptions can be shown in Chinese")
+expect(L10n.storedText("闹钟安排失败：example", bundle: englishBundle) == "The alarm could not be scheduled: example", "Historical formatted errors localize without losing diagnostics")
+expect(L10n.storedText("unrecognized diagnostic", bundle: englishBundle) == "unrecognized diagnostic", "Unknown historical detail is retained")
+
 var gate = CryEventGate(threshold: 0.65)
 expect(!gate.ingest(confidence: 0.9, at: 0), "A single cry window must not alert")
 expect(gate.ingest(confidence: 0.9, at: 1.5), "Consecutive cry windows must alert")

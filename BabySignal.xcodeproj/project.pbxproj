@@ -18,6 +18,12 @@
 		ABCD00000000000000000006 = {isa = PBXTargetDependency; target = ABCD0000000000000000000A; targetProxy = ABCD00000000000000000005; };
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+ABDA0000000000000000000A = {isa = PBXVariantGroup; children = (ABDA0000000000000000000B, ABDA0000000000000000000C, ); name = Localizable.strings; sourceTree = "<group>"; };
+ABDA00000000000000000014 = {isa = PBXVariantGroup; children = (ABDA00000000000000000015, ABDA00000000000000000016, ); name = InfoPlist.strings; sourceTree = "<group>"; };
+ABDA0000000000000000001E = {isa = PBXVariantGroup; children = (ABDA0000000000000000001F, ABDA00000000000000000020, ); name = InfoPlist.strings; sourceTree = "<group>"; };
+/* End PBXVariantGroup section */
+
 /* Begin PBXBuildFile section */
 		1C7277D5B9AE13C802D58560 /* BabySignal/Services/AudioMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F799E728BC5478A08F2046C /* BabySignal/Services/AudioMonitor.swift */; };
 		214FAD66617094FC1E2341C1 /* BabySignal/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BF729FFE074CAEE622C0292 /* BabySignal/Assets.xcassets */; };
@@ -43,6 +49,12 @@
 		ABCF00000000000000000003 = {isa = PBXBuildFile; fileRef = ABCE00000000000000000003; };
 		ABCF00000000000000000004 = {isa = PBXBuildFile; fileRef = ABCE00000000000000000004; };
 		ABCF00000000000000000005 = {isa = PBXBuildFile; fileRef = ABCE00000000000000000005; };
+ABDA00000000000000000002 = {isa = PBXBuildFile; fileRef = ABDA00000000000000000001; };
+ABDA00000000000000000003 = {isa = PBXBuildFile; fileRef = ABDA00000000000000000001; };
+ABDA0000000000000000000D = {isa = PBXBuildFile; fileRef = ABDA0000000000000000000A; };
+ABDA0000000000000000000E = {isa = PBXBuildFile; fileRef = ABDA0000000000000000000A; };
+ABDA00000000000000000017 = {isa = PBXBuildFile; fileRef = ABDA00000000000000000014; };
+ABDA00000000000000000021 = {isa = PBXBuildFile; fileRef = ABDA0000000000000000001E; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +83,13 @@
 		ABCE00000000000000000004 = {isa = PBXFileReference; lastKnownFileType = text; path = "BabySignal/Models/LICENSE-YAMNet.txt"; sourceTree = SOURCE_ROOT; };
 		ABCE00000000000000000005 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabySignal/Core/AudioObservation.swift; sourceTree = SOURCE_ROOT; };
 		ABCE00000000000000000006 = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Signing.xcconfig; sourceTree = SOURCE_ROOT; };
+ABDA00000000000000000001 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabySignal/Core/L10n.swift; sourceTree = SOURCE_ROOT; };
+ABDA0000000000000000000B = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en"; path = "Shared/Localization/en.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+ABDA0000000000000000000C = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "Shared/Localization/zh-Hans.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+ABDA00000000000000000015 = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en"; path = "BabySignal/en.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
+ABDA00000000000000000016 = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "BabySignal/zh-Hans.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
+ABDA0000000000000000001F = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en"; path = "BabySignalLiveActivity/en.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
+ABDA00000000000000000020 = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "BabySignalLiveActivity/zh-Hans.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +133,11 @@
 				ABCE00000000000000000002,
 				ABCE00000000000000000003,
 				ABCE00000000000000000005,
+				ABDA00000000000000000001,
+				ABDA0000000000000000000A,
+				ABDA00000000000000000014,
+				ABDA0000000000000000001E,
+
 				B55F7EB0A85CB68F6460F84B /* BabySignal/Services/StopBabyAlarmIntent.swift */,
 				5FACD55CC178E0AAE7B26AC3 /* BabySignal/Core/MonitoringRecovery.swift */,
 				0E06938C99F866468B5C9C50 /* BabySignal/BabySignalApp.swift */,
@@ -170,7 +194,7 @@
 			};
 			buildConfigurationList = C631E4B921CE4474D0AB93BD /* Build configuration list for PBXProject "BabySignal" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = "zh-Hans";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				"zh-Hans",
@@ -194,10 +218,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				214FAD66617094FC1E2341C1 /* BabySignal/Assets.xcassets in Resources */,
+				ABDA00000000000000000017,
+				ABDA0000000000000000000D,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABCD00000000000000000008 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (ABCD00000000000000000003, ); runOnlyForDeploymentPostprocessing = 0; };
+		ABCD00000000000000000008 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (ABDA00000000000000000021, ABDA0000000000000000000E, ABCD00000000000000000003, ); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -209,6 +235,7 @@
 				ABCD000000000000000000C9,
 				ABCD000000000000000000CA,
 				ABCF00000000000000000005,
+				ABDA00000000000000000002,
 				E7E95EE8C0961170AD90BA33 /* BabySignal/Services/StopBabyAlarmIntent.swift in Sources */,
 				D4E1F5F629553D3BEBD1B0B2 /* BabySignal/Core/MonitoringRecovery.swift in Sources */,
 				EA5282C5091718991A168444 /* BabySignal/BabySignalApp.swift in Sources */,
@@ -222,7 +249,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABCD00000000000000000007 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (ABCD000000000000000000CB, ABCD0000000000000000012C, ABCD0000000000000000012D, ); runOnlyForDeploymentPostprocessing = 0; };
+		ABCD00000000000000000007 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (ABDA00000000000000000003, ABCD000000000000000000CB, ABCD0000000000000000012C, ABCD0000000000000000012D, ); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */

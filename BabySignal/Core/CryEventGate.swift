@@ -7,9 +7,9 @@ enum DetectionSensitivity: String, CaseIterable, Codable, Identifiable {
 
   var title: String {
     switch self {
-    case .sensitive: return "较灵敏"
-    case .balanced: return "标准"
-    case .conservative: return "较谨慎"
+    case .sensitive: return L10n.text("较灵敏")
+    case .balanced: return L10n.text("标准")
+    case .conservative: return L10n.text("较谨慎")
     }
   }
 

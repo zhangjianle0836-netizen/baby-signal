@@ -1,5 +1,7 @@
 # 素材与第三方许可
 
+**简体中文** · [English](THIRD_PARTY_NOTICES.en.md)
+
 本项目原创代码和文档采用 [MIT](LICENSE)。第三方内容保留原许可，不能将仓库的 MIT 许可解释为替代它们的许可。
 
 ## 历史 CPU 模型实验

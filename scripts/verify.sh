@@ -22,7 +22,7 @@ if [[ -n "$running_commands" ]]; then
 fi
 case "${1:-all}" in
   tests|all)
-    xcrun swiftc BabySignal/Core/CryEventGate.swift BabySignal/Core/SignalEvent.swift BabySignal/Core/MonitoringRecovery.swift BabySignal/Core/MonitoringActivityState.swift \
+    xcrun swiftc BabySignal/Core/L10n.swift BabySignal/Core/CryEventGate.swift BabySignal/Core/SignalEvent.swift BabySignal/Core/MonitoringRecovery.swift BabySignal/Core/MonitoringActivityState.swift \
       BabySignal/Services/EventRepository.swift Tests/main.swift -o .build/core-tests
     .build/core-tests
     ;;

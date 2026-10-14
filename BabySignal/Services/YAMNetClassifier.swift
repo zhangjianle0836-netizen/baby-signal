@@ -67,8 +67,8 @@ final class YAMNetClassifier {
     case missingModel, invalidInput, invalidOutput
     var errorDescription: String? {
       switch self {
-      case .missingModel: return "本地识别模型未能加载，请重新安装 App。"
-      case .invalidInput, .invalidOutput: return "本地声音识别暂时不可用，请重新开始。"
+      case .missingModel: return L10n.text("本地识别模型未能加载，请重新安装 App。")
+      case .invalidInput, .invalidOutput: return L10n.text("本地声音识别暂时不可用，请重新开始。")
       }
     }
   }

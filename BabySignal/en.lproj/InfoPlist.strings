@@ -1,0 +1,3 @@
+"CFBundleDisplayName" = "Baby Signal";
+"NSMicrophoneUsageDescription" = "Detects baby crying on this phone. Audio is never saved or uploaded.";
+"NSAlarmKitUsageDescription" = "Uses system alarms for crying or monitoring interruptions. A paired Apple Watch may present the alert; test the actual vibration first.";

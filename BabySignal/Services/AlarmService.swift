@@ -67,6 +67,6 @@ final class AlarmService {
 
   enum AlarmError: LocalizedError {
     case permissionDenied
-    var errorDescription: String? { "未允许闹钟提醒，请在系统设置中开启。" }
+    var errorDescription: String? { L10n.text("未允许闹钟提醒，请在系统设置中开启。") }
   }
 }

@@ -20,7 +20,7 @@ private final class ClassificationObserver: NSObject, SNResultsObserving {
 
   func request(_ request: SNRequest, didFailWithError error: Error) {
     MonitoringDiagnostics.record("Built-in classifier failed: \(MonitoringDiagnostics.describe(error))")
-    failureHandler("内置声音识别暂时中断，请打开 App 快速恢复监测。")
+    failureHandler(L10n.text("内置声音识别暂时中断，请打开 App 快速恢复监测。"))
   }
 
   func requestDidComplete(_ request: SNRequest) {}
@@ -127,8 +127,8 @@ final class AudioMonitor {
 
     var errorDescription: String? {
       switch self {
-      case .noInput: return "麦克风暂时不可用，请检查音频设备后重试。"
-      case .noClassifier: return "当前系统不提供宝宝哭声分类，请更新系统后重试。"
+      case .noInput: return L10n.text("麦克风暂时不可用，请检查音频设备后重试。")
+      case .noClassifier: return L10n.text("当前系统不提供宝宝哭声分类，请更新系统后重试。")
       }
     }
   }

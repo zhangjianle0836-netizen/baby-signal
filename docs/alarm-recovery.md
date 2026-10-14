@@ -1,5 +1,7 @@
 # 锁屏检测与闹钟停止后恢复
 
+**简体中文** · [English](alarm-recovery.en.md)
+
 ## 真机证据与修复
 
 复测发现问题并非只发生在停止闹钟后：锁屏后 Apple 内置 SoundAnalysis 即出现 operationFailed（域 com.apple.SoundAnalysis、代码 2），重启音频会话又返回 560557684（四字符 !int）。确切的分类器内部原因没有从设备通用错误中取到，不声称已证实 GPU 错误；[苹果论坛的相似报告](https://developer.apple.com/forums/thread/811582) 也描述内置分类器在后台失败。

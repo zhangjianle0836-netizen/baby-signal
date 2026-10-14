@@ -1,5 +1,7 @@
 # 灵动岛与锁屏实时活动
 
+**简体中文** · [English](live-activity.en.md)
+
 ## 范围
 
 新增 WidgetKit 扩展 `BabySignalLiveActivity`，由 iPhone App 使用本地 ActivityKit API 请求、更新和结束。不需要推送服务、付费依赖或独立手表 App。扩展与 App 使用相同的 `MonitoringActivityState` 编码结构。

@@ -23,25 +23,25 @@ struct MonitoringActivityState: Codable, Hashable {
   }
 
   func title(stale: Bool) -> String {
-    if stale && status != .stopped { return "状态未更新，请打开 App" }
+    if stale && status != .stopped { return L10n.text("状态未更新，请打开 App") }
     switch status {
-    case .preparing: return "正在准备监测"
-    case .monitoring: return "宝宝声音监测中"
-    case .cry: return "检测到哭声，请查看宝宝"
-    case .resumed: return "已恢复，继续监测中"
-    case .interrupted: return "监测中断，请打开 App"
-    case .stopped: return "监测已停止"
+    case .preparing: return L10n.text("正在准备监测")
+    case .monitoring: return L10n.text("宝宝声音监测中")
+    case .cry: return L10n.text("检测到哭声，请查看宝宝")
+    case .resumed: return L10n.text("已恢复，继续监测中")
+    case .interrupted: return L10n.text("监测中断，请打开 App")
+    case .stopped: return L10n.text("监测已停止")
     }
   }
 
   func compactTitle(stale: Bool) -> String {
-    if stale && status != .stopped { return "请检查" }
+    if stale && status != .stopped { return L10n.text("请检查") }
     switch status {
-    case .preparing: return "准备中"
-    case .monitoring, .resumed: return "监测中"
-    case .cry: return "有哭声"
-    case .interrupted: return "已中断"
-    case .stopped: return "已停止"
+    case .preparing: return L10n.text("准备中")
+    case .monitoring, .resumed: return L10n.text("监测中")
+    case .cry: return L10n.text("有哭声")
+    case .interrupted: return L10n.text("已中断")
+    case .stopped: return L10n.text("已停止")
     }
   }
 

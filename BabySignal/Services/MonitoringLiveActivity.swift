@@ -57,17 +57,17 @@ final class MonitoringLiveActivity {
       }
     }
     guard ActivityAuthorizationInfo().areActivitiesEnabled else {
-      availabilityMessage = "实时活动未开启，可在手机系统设置中开启。"
+      availabilityMessage = L10n.text("实时活动未开启，可在手机系统设置中开启。")
       return
     }
     if let createdAt { state.displayExpiresAt = createdAt.addingTimeInterval(7 * 3600 + 55 * 60) }
     if activity == nil {
       guard dismissedSession != state.sessionStartedAt else {
-        availabilityMessage = "实时活动已被移除，下次开始监测时会再显示。"
+        availabilityMessage = L10n.text("实时活动已被移除，下次开始监测时会再显示。")
         return
       }
       guard UIApplication.shared.applicationState == .active else {
-        availabilityMessage = "打开 App 后可重新显示灵动岛状态，声音检测单独运行。"
+        availabilityMessage = L10n.text("打开 App 后可重新显示灵动岛状态，声音检测单独运行。")
         return
       }
       do {
@@ -79,7 +79,7 @@ final class MonitoringLiveActivity {
         )
         createdAt = start
       } catch {
-        availabilityMessage = "实时活动未能显示，请检查系统设置。"
+        availabilityMessage = L10n.text("实时活动未能显示，请检查系统设置。")
         return
       }
     } else {

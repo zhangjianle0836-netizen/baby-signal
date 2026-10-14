@@ -1,5 +1,7 @@
 # 宝宝信号 · Baby Signal
 
+**简体中文** · [English](README.en.md)
+
 **把宝宝的哭声，变成照护人能看见、能感受到的提醒。**
 
 面向听障妈妈及其他听障照护人的 iPhone + Apple Watch 开源工程原型。希望尽量使用家庭已有的设备，在手机本地识别哭声，再通过视觉状态和手腕触感提醒照护人。
@@ -62,6 +64,14 @@ open BabySignal.xcodeproj
 
 自用开发测试不需要上架 App Store。免费 Personal Team 通常需每 7 天重新签名安装；能力、签名及实际运行以你自己的设备验证为准。[苹果账号说明](https://developer.apple.com/help/account/basics/about-your-developer-account)
 
+### 产品语言
+
+App 和实时活动扩展支持简体中文、英文，跟随 iPhone 支持的系统／应用语言。若系统提供应用语言设置，可在「设置 → App → 宝宝信号 → 语言」选择；也可调整系统首选语言，修改后重新打开 App。其他语言回退到英文。
+
+覆盖页面、状态、图解、无障碍标签、权限说明和 App 闹钟文案。Apple Watch 系统界面遵循手表语言。固定历史说明按当前语言显示，原始系统错误保留 iOS 当时提供的语言。已经安排的闹钟可能保留创建时的文案，换语言后请结束旧提醒并重新测试。
+
+语言切换不会修复锁屏识别问题。
+
 ### 本机检查
 
 ```bash
@@ -73,7 +83,7 @@ open BabySignal.xcodeproj
 
 脚本有单实例锁，最多 2 个构建任务。不要绕过活跃锁或并行运行多个验证命令。`.build`、签名本地配置、证书、设备日志及 Xcode 用户状态均不进入 Git。
 
-已记录 65 项检查及 5 个真实内置分类器静音窗口通过；这些检查不等同于宝宝哭声识别准确。完整家庭场景检查见 [真机检查表](docs/device-test-checklist.md)。
+已记录 72 项检查及 5 个真实内置分类器静音窗口通过；这些检查不等同于宝宝哭声识别准确。完整家庭场景检查见 [真机检查表](docs/device-test-checklist.md)。
 
 ## 最需要共同解决的事
 
@@ -100,6 +110,7 @@ open BabySignal.xcodeproj
 - `BabySignal/MonitorStore.swift`：权限、会话、事件及恢复协作。
 - `BabySignal/Views/`：主界面、图解、设置及记录。
 - `BabySignalLiveActivity/`：灵动岛与锁屏界面。
+- `Shared/Localization/`：App 与扩展共用的中英文资源。
 - `Tests/`、`scripts/`：无需模拟器的逻辑检查与资源受限构建。
 - [锁屏与恢复实验](docs/alarm-recovery.md) · [快速恢复](docs/quick-resume.md) · [实时活动](docs/live-activity.md)
 - [插画与设计](docs/visual-design.md) · [测试记录](docs/device-test-checklist.md)

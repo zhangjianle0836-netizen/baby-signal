@@ -47,5 +47,7 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
 </dict>
 </plist>

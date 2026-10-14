@@ -1,5 +1,7 @@
 # 内置声音识别与快速恢复
 
+**简体中文** · [English](quick-resume.en.md)
+
 ## 当前选择
 
 用户明确要求切回 Apple 内置声音识别器。当前 AudioMonitor 使用 `SNClassifySoundRequest(.version1)` / `baby_crying`。三档阈值恢复为 0.45 / 0.65 / 0.80，不沿用 YAMNet 分值。YAMNet 源码和模型保留作历史对比，不编译或嵌入当前 App，常规验证也不再要求编译 CPU 模型。

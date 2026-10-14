@@ -12,16 +12,16 @@ private enum GuideStep: Int, CaseIterable, Identifiable {
   }
   var title: String {
     switch self {
-    case .phone: return "手机放在宝宝旁边"
-    case .watch: return "手表戴好，并解锁"
-    case .care: return "收到提醒，去看宝宝"
+    case .phone: return L10n.text("手机放在宝宝旁边")
+    case .watch: return L10n.text("手表戴好，并解锁")
+    case .care: return L10n.text("收到提醒，去看宝宝")
     }
   }
   var summary: String {
     switch self {
-    case .phone: return "放在婴儿床外，手机和电线别让宝宝碰到。"
-    case .watch: return "手表贴合手腕，用这台手机配对的手表。"
-    case .care: return "关闭提醒后会尝试继续；若中断，点“快速恢复监测”。"
+    case .phone: return L10n.text("放在婴儿床外，手机和电线别让宝宝碰到。")
+    case .watch: return L10n.text("手表贴合手腕，用这台手机配对的手表。")
+    case .care: return L10n.text("关闭提醒后会尝试继续；若中断，点“快速恢复监测”。")
     }
   }
 }
@@ -47,7 +47,7 @@ struct MonitorView: View {
     NavigationStack {
       ScrollView {
         VStack(alignment: .leading, spacing: 22) {
-          Text("把宝宝的哭声\n变成手腕上的提醒")
+          Text(L10n.text("把宝宝的哭声\n变成手腕上的提醒"))
             .font(.title2.bold()).accessibilityAddTraits(.isHeader)
           if let event = store.newestUnconfirmedEvent { reminder(event) }
           statusCard
@@ -59,33 +59,33 @@ struct MonitorView: View {
       }
       .background(SignalStyle.canvas)
       .safeAreaInset(edge: .bottom, spacing: 0) { mainAction }
-      .navigationTitle("宝宝信号")
+      .navigationTitle(L10n.text("宝宝信号"))
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
         ToolbarItem(placement: .topBarLeading) {
-          Button("图解", systemImage: "book.closed") { showGuide = true }
-            .accessibilityLabel("查看使用图解")
+          Button(L10n.text("图解"), systemImage: "book.closed") { showGuide = true }
+            .accessibilityLabel(L10n.text("查看使用图解"))
         }
         ToolbarItem(placement: .topBarTrailing) {
           Menu {
-            Button("提醒记录", systemImage: "clock.arrow.circlepath") { showHistory = true }
-            Button("设置与权限", systemImage: "gearshape") { showSettings = true }
-          } label: { Label("更多", systemImage: "ellipsis.circle") }
-          .accessibilityLabel("更多：记录和设置")
+            Button(L10n.text("提醒记录"), systemImage: "clock.arrow.circlepath") { showHistory = true }
+            Button(L10n.text("设置与权限"), systemImage: "gearshape") { showSettings = true }
+          } label: { Label(L10n.text("更多"), systemImage: "ellipsis.circle") }
+          .accessibilityLabel(L10n.text("更多：记录和设置"))
         }
       }
       .sheet(isPresented: $showGuide) { IllustratedGuideView() }
       .sheet(isPresented: $showSettings) { MonitorSettingsView(store: store) }
       .sheet(isPresented: $showHistory) { EventHistoryView(store: store) }
-      .confirmationDialog("15 秒后发出测试提醒", isPresented: $showTestWarning, titleVisibility: .visible) {
-        Button("开始测试") { Task { await store.runReminderTest() } }
+      .confirmationDialog(L10n.text("15 秒后发出测试提醒"), isPresented: $showTestWarning, titleVisibility: .visible) {
+        Button(L10n.text("开始测试")) { Task { await store.runReminderTest() } }
       } message: {
-        Text("点开始后立即锁屏，留意手表是否震动。手机也可能响铃，请先避开宝宝休息的地方。")
+        Text(L10n.text("点开始后立即锁屏，留意手表是否震动。手机也可能响铃，请先避开宝宝休息的地方。"))
       }
-      .confirmationDialog("停止听取宝宝声音？", isPresented: $showStopWarning, titleVisibility: .visible) {
-        Button("停止监测", role: .destructive) { store.stopMonitoring() }
+      .confirmationDialog(L10n.text("停止听取宝宝声音？"), isPresented: $showStopWarning, titleVisibility: .visible) {
+        Button(L10n.text("停止监测"), role: .destructive) { store.stopMonitoring() }
       } message: {
-        Text("停止后不再检测哭声。已经发出的提醒仍需单独关闭。")
+        Text(L10n.text("停止后不再检测哭声。已经发出的提醒仍需单独关闭。"))
       }
       .tint(SignalStyle.ink)
     }
@@ -93,25 +93,25 @@ struct MonitorView: View {
 
   private var statusTitle: String {
     switch store.phase {
-    case .idle: return "还没开始监测"
-    case .starting: return "正在准备"
-    case .monitoring: return store.lastAnalysisAt == nil ? "正在连接麦克风" : "正在听宝宝声音"
-    case .recovering: return "正在恢复监测"
-    case .interrupted: return store.isSessionActive ? "正在等声音恢复" : "监测已暂停"
-    case .failed: return "现在无法检测哭声"
+    case .idle: return L10n.text("还没开始监测")
+    case .starting: return L10n.text("正在准备")
+    case .monitoring: return store.lastAnalysisAt == nil ? L10n.text("正在连接麦克风") : L10n.text("正在听宝宝声音")
+    case .recovering: return L10n.text("正在恢复监测")
+    case .interrupted: return store.isSessionActive ? L10n.text("正在等声音恢复") : L10n.text("监测已暂停")
+    case .failed: return L10n.text("现在无法检测哭声")
     }
   }
 
   private var statusExplanation: String {
     switch store.phase {
-    case .idle: return "放好手机、戴好手表，再点下面的“开始监测”。"
-    case .starting: return "请按手机提示，允许使用麦克风和闹钟。"
+    case .idle: return L10n.text("放好手机、戴好手表，再点下面的“开始监测”。")
+    case .starting: return L10n.text("请按手机提示，允许使用麦克风和闹钟。")
     case .monitoring:
-      return store.lastAnalysisAt == nil ? "请稍等，正在等待声音检测结果。" : "手机留在宝宝附近。此版锁屏可能中断，请留意监测状态。"
-    case .recovering: return "请保持 App 打开，等待声音检测结果。"
+      return store.lastAnalysisAt == nil ? L10n.text("请稍等，正在等待声音检测结果。") : L10n.text("手机留在宝宝附近。此版锁屏可能中断，请留意监测状态。")
+    case .recovering: return L10n.text("请保持 App 打开，等待声音检测结果。")
     case .interrupted:
-      return store.isSessionActive ? "声音检测暂时中断。可以点下面的“快速恢复监测”。" : "请查看宝宝，检查设置后重新开始。"
-    case .failed: return "请先查看宝宝，再点“快速恢复监测”。"
+      return store.isSessionActive ? L10n.text("声音检测暂时中断。可以点下面的“快速恢复监测”。") : L10n.text("请查看宝宝，检查设置后重新开始。")
+    case .failed: return L10n.text("请先查看宝宝，再点“快速恢复监测”。")
     }
   }
 
@@ -137,17 +137,17 @@ struct MonitorView: View {
         }
       }
       if store.isSessionActive {
-        Label(store.liveActivityMessage ?? "灵动岛和锁屏可查看监测状态", systemImage: "rectangle.topthird.inset.filled")
+        Label(store.liveActivityMessage ?? L10n.text("灵动岛和锁屏可查看监测状态"), systemImage: "rectangle.topthird.inset.filled")
           .font(.footnote).foregroundStyle(SignalStyle.secondaryText)
       }
-      Label("使用示意图 · 不提供实时视频", systemImage: "photo")
+      Label(L10n.text("使用示意图 · 不提供实时视频"), systemImage: "photo")
         .font(.footnote).foregroundStyle(SignalStyle.secondaryText)
       if store.phase == .failed || store.phase == .interrupted {
-        DisclosureGroup("查看具体情况") {
+        DisclosureGroup(L10n.text("查看具体情况")) {
           Text(store.message).font(.callout).padding(.top, 6)
         }
         .font(.callout)
-        Button("检查设置", systemImage: "gearshape") { showSettings = true }
+        Button(L10n.text("检查设置"), systemImage: "gearshape") { showSettings = true }
           .buttonStyle(.bordered).frame(minHeight: 48)
       }
     }
@@ -169,7 +169,7 @@ struct MonitorView: View {
     VStack(spacing: 10) {
       if store.canQuickRecover || store.phase == .recovering {
         Button { Task { await store.quicklyResumeMonitoring() } } label: {
-          Label(store.phase == .recovering ? "正在恢复，请稍等" : "快速恢复监测", systemImage: "arrow.clockwise.circle.fill")
+          Label(store.phase == .recovering ? L10n.text("正在恢复，请稍等") : L10n.text("快速恢复监测"), systemImage: "arrow.clockwise.circle.fill")
             .font(.headline).frame(maxWidth: .infinity, minHeight: 60)
             .foregroundStyle(.white)
             .background(SignalStyle.button, in: RoundedRectangle(cornerRadius: 20))
@@ -177,27 +177,27 @@ struct MonitorView: View {
         .buttonStyle(.plain)
         .disabled(store.phase == .recovering)
         .opacity(store.phase == .recovering ? 0.65 : 1)
-        .accessibilityHint("重新连接麦克风；收到有效声音分析后才显示恢复")
+        .accessibilityHint(L10n.text("重新连接麦克风；收到有效声音分析后才显示恢复"))
       }
       if store.isSessionActive || store.phase == .interrupted {
         Button { showStopWarning = true } label: {
-          Label("停止监测", systemImage: "stop.circle")
+          Label(L10n.text("停止监测"), systemImage: "stop.circle")
             .font(.headline).frame(maxWidth: .infinity, minHeight: 56)
         }
         .buttonStyle(.bordered)
-        .accessibilityHint("停止检测新的哭声，会先询问你是否确认")
+        .accessibilityHint(L10n.text("停止检测新的哭声，会先询问你是否确认"))
       } else if !store.canQuickRecover {
         Button { Task { await store.startMonitoring() } } label: {
-          Label(store.phase == .failed ? "重新开始监测" : "开始监测", systemImage: "mic.fill")
+          Label(store.phase == .failed ? L10n.text("重新开始监测") : L10n.text("开始监测"), systemImage: "mic.fill")
             .font(.headline).frame(maxWidth: .infinity, minHeight: 60)
             .foregroundStyle(.white)
             .background(SignalStyle.button, in: RoundedRectangle(cornerRadius: 20))
         }
         .buttonStyle(.plain).disabled(!store.canStart)
         .opacity(store.canStart ? 1 : 0.55)
-        .accessibilityHint("允许手机听取声音，检测到哭声时安排提醒")
+        .accessibilityHint(L10n.text("允许手机听取声音，检测到哭声时安排提醒"))
       }
-      Text(store.isSessionActive ? "提醒结束后会尝试继续；中断时点“快速恢复监测”" : "手机留在宝宝附近；此设备锁屏可能中断")
+      Text(store.isSessionActive ? L10n.text("提醒结束后会尝试继续；中断时点“快速恢复监测”") : L10n.text("手机留在宝宝附近；此设备锁屏可能中断"))
         .font(.subheadline).foregroundStyle(SignalStyle.secondaryText).multilineTextAlignment(.center)
     }
     .padding(.horizontal, 20).padding(.top, 14).padding(.bottom, 10)
@@ -211,18 +211,18 @@ struct MonitorView: View {
           guideImage(event.kind == .test ? .watch : .care, size: 84)
         }
         VStack(alignment: .leading, spacing: 7) {
-          Text(event.kind == .test ? "手表提醒你了吗？" : "检测到哭声，请看看宝宝")
+          Text(event.kind == .test ? L10n.text("手表提醒你了吗？") : L10n.text("检测到哭声，请看看宝宝"))
             .font(.headline).accessibilityAddTraits(.isHeader)
           Text(event.date, format: .dateTime.hour().minute())
             .font(.subheadline).foregroundStyle(SignalStyle.secondaryText)
           Text(reminderStatus(event)).font(.callout)
         }
       }
-      Button(event.kind == .test ? "我感到了手表震动" : "我去看看，并继续监测") {
+      Button(event.kind == .test ? L10n.text("我感到了手表震动") : L10n.text("我去看看，并继续监测")) {
         Task { await store.acknowledgeAndResume(id: event.id) }
       }
       .buttonStyle(.borderedProminent).frame(minHeight: 48).tint(SignalStyle.button)
-      Text(store.isSessionActive ? "只结束这次提醒；如果监测被打断，会自动尝试恢复。" : "这不会开启监测。准备好后，再点“开始监测”。")
+      Text(store.isSessionActive ? L10n.text("只结束这次提醒；如果监测被打断，会自动尝试恢复。") : L10n.text("这不会开启监测。准备好后，再点“开始监测”。"))
         .font(.subheadline).foregroundStyle(SignalStyle.secondaryText)
     }
     .padding(18).signalCard()
@@ -231,32 +231,32 @@ struct MonitorView: View {
 
   private func reminderStatus(_ event: SignalEvent) -> String {
     switch event.alertStatus {
-    case .scheduled: return "已安排提醒，请留意手表。"
-    case .alerting: return "闹钟已触发，请确认手表是否提醒你。"
-    case .ended: return "这次闹钟已结束，还没有你的确认。"
-    case .cancelled: return "这次提醒已关闭。"
-    case .failed: return "这次提醒没有发出，请查看宝宝。"
-    case .notRequested: return "正在准备提醒。"
+    case .scheduled: return L10n.text("已安排提醒，请留意手表。")
+    case .alerting: return L10n.text("闹钟已触发，请确认手表是否提醒你。")
+    case .ended: return L10n.text("这次闹钟已结束，还没有你的确认。")
+    case .cancelled: return L10n.text("这次提醒已关闭。")
+    case .failed: return L10n.text("这次提醒没有发出，请查看宝宝。")
+    case .notRequested: return L10n.text("正在准备提醒。")
     }
   }
 
   private var testCard: some View {
     VStack(alignment: .leading, spacing: 14) {
-      Label("先试一次手表提醒", systemImage: "applewatch")
+      Label(L10n.text("先试一次手表提醒"), systemImage: "applewatch")
         .font(.headline).accessibilityAddTraits(.isHeader)
-      Text("确认手表能震动，再开始照护时的监测。")
+      Text(L10n.text("确认手表能震动，再开始照护时的监测。"))
         .font(.body).foregroundStyle(SignalStyle.secondaryText)
-      Button("测试手表震动", systemImage: "hand.tap") { showTestWarning = true }
+      Button(L10n.text("测试手表震动"), systemImage: "hand.tap") { showTestWarning = true }
         .buttonStyle(.bordered).frame(minHeight: 48)
         .disabled(store.isSessionActive || store.isTesting || store.hasPendingAlarm)
       if store.isSessionActive {
-        Text("监测中暂不做测试，避免打断声音检测。")
+        Text(L10n.text("监测中暂不做测试，避免打断声音检测。"))
           .font(.subheadline).foregroundStyle(SignalStyle.secondaryText)
       } else if store.hasPendingAlarm {
-        Button("先处理已有提醒", systemImage: "clock.arrow.circlepath") { showHistory = true }
+        Button(L10n.text("先处理已有提醒"), systemImage: "clock.arrow.circlepath") { showHistory = true }
           .frame(minHeight: 48)
       } else {
-        Text("15 秒后提醒 · 开始测试后立即锁屏")
+        Text(L10n.text("15 秒后提醒 · 开始测试后立即锁屏"))
           .font(.subheadline).foregroundStyle(SignalStyle.secondaryText)
       }
     }
@@ -265,12 +265,12 @@ struct MonitorView: View {
 
   private var guideCard: some View {
     VStack(alignment: .leading, spacing: 18) {
-      Text("照着这三步用").font(.title3.bold()).accessibilityAddTraits(.isHeader)
+      Text(L10n.text("照着这三步用")).font(.title3.bold()).accessibilityAddTraits(.isHeader)
       ForEach(GuideStep.allCases) { step in
         GuideStepRow(step: step)
         if step != .care { Divider() }
       }
-      Button("查看完整图解", systemImage: "book") { showGuide = true }
+      Button(L10n.text("查看完整图解"), systemImage: "book") { showGuide = true }
         .frame(minHeight: 48)
     }
     .padding(18).signalCard()
@@ -278,11 +278,11 @@ struct MonitorView: View {
 
   private var essentials: some View {
     VStack(alignment: .leading, spacing: 10) {
-      Label("没有哭声提醒，也请定时查看宝宝", systemImage: "info.circle")
+      Label(L10n.text("没有哭声提醒，也请定时查看宝宝"), systemImage: "info.circle")
         .font(.callout.bold())
-      Text("这是辅助照护工具，不能判断宝宝是否安全。断电、App 关闭或断连时，可能无法提醒。")
+      Text(L10n.text("这是辅助照护工具，不能判断宝宝是否安全。断电、App 关闭或断连时，可能无法提醒。"))
         .font(.subheadline)
-      Text("不保存、不上传录音。").font(.subheadline)
+      Text(L10n.text("不保存、不上传录音。")).font(.subheadline)
       if let warning = store.storageWarning { Text(warning).font(.subheadline.bold()) }
     }
     .foregroundStyle(SignalStyle.secondaryText).padding(.horizontal, 2)
@@ -341,24 +341,24 @@ private struct IllustratedGuideView: View {
             }
             .padding(20).signalCard()
           }
-          Label("图示为操作说明，不是实时宝宝画面", systemImage: "photo")
+          Label(L10n.text("图示为操作说明，不是实时宝宝画面"), systemImage: "photo")
             .font(.subheadline).foregroundStyle(SignalStyle.secondaryText)
-          Text("夜间唤醒效果需要实际测试。原型试用时请保留原有照护安排；没有哭声提醒不能证明宝宝安全。")
+          Text(L10n.text("夜间唤醒效果需要实际测试。原型试用时请保留原有照护安排；没有哭声提醒不能证明宝宝安全。"))
             .font(.body).foregroundStyle(SignalStyle.secondaryText)
         }
         .padding(20).frame(maxWidth: 620).frame(maxWidth: .infinity)
       }
       .background(SignalStyle.canvas)
-      .navigationTitle("使用图解").navigationBarTitleDisplayMode(.inline)
-      .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { dismiss() } } }
+      .navigationTitle(L10n.text("使用图解")).navigationBarTitleDisplayMode(.inline)
+      .toolbar { ToolbarItem(placement: .confirmationAction) { Button(L10n.text("完成")) { dismiss() } } }
     }
   }
 
   private func detail(_ step: GuideStep) -> String {
     switch step {
-    case .phone: return "开始监测后请锁屏。不要把手机带离宝宝，也不要放进婴儿床或盖在被褥下。"
-    case .watch: return "先做一次提醒测试。夜间使用前给手表充好电，并确认你能感知到震动。"
-    case .care: return "如果首页显示正在恢复，请稍等；若显示无法检测，请检查设置或重新开始。"
+    case .phone: return L10n.text("手机留在宝宝附近。此设备锁屏可能中断识别；不要把手机放进婴儿床或盖在被褥下。")
+    case .watch: return L10n.text("先做一次提醒测试。夜间使用前给手表充好电，并确认你能感知到震动。")
+    case .care: return L10n.text("正在恢复时请保持 App 打开等待；若无法检测，点“快速恢复监测”或检查设置。")
     }
   }
 }
@@ -371,46 +371,46 @@ private struct MonitorSettingsView: View {
     NavigationStack {
       Form {
         Section {
-          permission("允许听取声音", symbol: "mic", granted: store.microphoneAuthorized)
-          permission("允许闹钟提醒", symbol: "bell", granted: store.alarmAuthorized)
-          Button("打开手机系统设置", systemImage: "gearshape") { store.openSettings() }
+          permission(L10n.text("允许听取声音"), symbol: "mic", granted: store.microphoneAuthorized)
+          permission(L10n.text("允许闹钟提醒"), symbol: "bell", granted: store.alarmAuthorized)
+          Button(L10n.text("打开手机系统设置"), systemImage: "gearshape") { store.openSettings() }
             .frame(minHeight: 48)
-        } header: { Text("使用权限") } footer: {
-          Text("听取声音需要麦克风权限，发出提醒需要闹钟权限。")
+        } header: { Text(L10n.text("使用权限")) } footer: {
+          Text(L10n.text("听取声音需要麦克风权限，发出提醒需要闹钟权限。"))
         }
         Section {
-          Picker("哭声检测灵敏度", selection: $store.sensitivity) {
+          Picker(L10n.text("哭声检测灵敏度"), selection: $store.sensitivity) {
             ForEach(DetectionSensitivity.allCases) { Text($0.title).tag($0) }
           }
           .disabled(store.isSessionActive)
-        } header: { Text("检测灵敏度") } footer: {
-          Text(store.isSessionActive ? "请先停止监测，再调整灵敏度。" : "较灵敏可能增加误报。更改后在下次开始时生效，请在家中试用。")
+        } header: { Text(L10n.text("检测灵敏度")) } footer: {
+          Text(store.isSessionActive ? L10n.text("请先停止监测，再调整灵敏度。") : L10n.text("较灵敏可能增加误报。更改后在下次开始时生效，请在家中试用。"))
         }
-        Section("佩戴检查") {
-          Label("手表戴在手腕上，并保持解锁", systemImage: "applewatch")
-          Label("手机和手表电量充足", systemImage: "battery.100percent")
-          Text("在手机的 Watch App → 时钟中，检查“推送来自 iPhone 的提醒”是否开启。")
+        Section(L10n.text("佩戴检查")) {
+          Label(L10n.text("手表戴在手腕上，并保持解锁"), systemImage: "applewatch")
+          Label(L10n.text("手机和手表电量充足"), systemImage: "battery.100percent")
+          Text(L10n.text("在手机的 Watch App → 时钟中，检查“推送来自 iPhone 的提醒”是否开启。"))
         }
-        Section("本地识别模型") {
-          Text("当前使用 Apple 内置声音识别器，识别结果只在手机本地处理。")
-          Text("这台测试设备锁屏后可能中断识别。中断时先查看宝宝，再点“快速恢复监测”。")
+        Section(L10n.text("本地识别模型")) {
+          Text(L10n.text("当前使用 Apple 内置声音识别器，识别结果只在手机本地处理。"))
+          Text(L10n.text("这台测试设备锁屏后可能中断识别。中断时先查看宝宝，再点“快速恢复监测”。"))
         }
-        Section("录音与记录") {
-          Text("声音只在手机本地分析，不保存、不上传录音。")
-          Text("本机保留最近 100 条提醒记录，可在“提醒记录”中清除。")
+        Section(L10n.text("录音与记录")) {
+          Text(L10n.text("声音只在手机本地分析，不保存、不上传录音。"))
+          Text(L10n.text("本机保留最近 100 条提醒记录，可在“提醒记录”中清除。"))
         }
       }
       .scrollContentBackground(.hidden)
       .background(SignalStyle.canvas)
-      .navigationTitle("设置与权限").navigationBarTitleDisplayMode(.inline)
-      .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { dismiss() } } }
+      .navigationTitle(L10n.text("设置与权限")).navigationBarTitleDisplayMode(.inline)
+      .toolbar { ToolbarItem(placement: .confirmationAction) { Button(L10n.text("完成")) { dismiss() } } }
     }
   }
 
   private func permission(_ title: String, symbol: String, granted: Bool) -> some View {
     VStack(alignment: .leading, spacing: 6) {
       Label(title, systemImage: symbol).font(.body)
-      Label(granted ? "已允许" : "尚未允许", systemImage: granted ? "checkmark.circle" : "exclamationmark.circle")
+      Label(granted ? L10n.text("已允许") : L10n.text("尚未允许"), systemImage: granted ? "checkmark.circle" : "exclamationmark.circle")
         .font(.subheadline).foregroundStyle(SignalStyle.secondaryText)
     }
     .accessibilityElement(children: .combine)
@@ -426,7 +426,7 @@ private struct EventHistoryView: View {
     NavigationStack {
       List {
         if store.events.isEmpty {
-          ContentUnavailableView("还没有提醒记录", systemImage: "clock", description: Text("检测到哭声或测试手表提醒后，可以在这里查看。"))
+          ContentUnavailableView(L10n.text("还没有提醒记录"), systemImage: "clock", description: Text(L10n.text("检测到哭声或测试手表提醒后，可以在这里查看。")))
         }
         ForEach(store.events) { event in
           VStack(alignment: .leading, spacing: 10) {
@@ -437,14 +437,14 @@ private struct EventHistoryView: View {
               Text(event.alertStatus.title).font(.callout)
             }
             if event.confirmedAt != nil {
-              Label("你已确认收到提醒", systemImage: "checkmark.circle").font(.callout)
+              Label(L10n.text("你已确认收到提醒"), systemImage: "checkmark.circle").font(.callout)
             }
             if event.alertStatus == .scheduled || event.alertStatus == .alerting {
-              Button("关闭这次提醒", role: .destructive) { store.cancelReminder(id: event.id) }
+              Button(L10n.text("关闭这次提醒"), role: .destructive) { store.cancelReminder(id: event.id) }
                 .frame(minHeight: 48)
             }
-            DisclosureGroup("详情") {
-              Text(event.detail).font(.body).padding(.top, 6)
+            DisclosureGroup(L10n.text("详情")) {
+              Text(L10n.storedText(event.detail)).font(.body).padding(.top, 6)
             }
           }
           .padding(.vertical, 8)
@@ -452,14 +452,14 @@ private struct EventHistoryView: View {
       }
       .scrollContentBackground(.hidden)
       .background(SignalStyle.canvas)
-      .navigationTitle("提醒记录").navigationBarTitleDisplayMode(.inline)
+      .navigationTitle(L10n.text("提醒记录")).navigationBarTitleDisplayMode(.inline)
       .toolbar {
-        ToolbarItem(placement: .topBarLeading) { Button("清除", role: .destructive) { showClear = true }.disabled(store.events.isEmpty) }
-        ToolbarItem(placement: .confirmationAction) { Button("完成") { dismiss() } }
+        ToolbarItem(placement: .topBarLeading) { Button(L10n.text("清除"), role: .destructive) { showClear = true }.disabled(store.events.isEmpty) }
+        ToolbarItem(placement: .confirmationAction) { Button(L10n.text("完成")) { dismiss() } }
       }
-      .confirmationDialog("清除已结束的记录？", isPresented: $showClear, titleVisibility: .visible) {
-        Button("清除记录", role: .destructive) { store.clearHistory() }
-      } message: { Text("正在安排或尚未结束的提醒记录会保留。") }
+      .confirmationDialog(L10n.text("清除已结束的记录？"), isPresented: $showClear, titleVisibility: .visible) {
+        Button(L10n.text("清除记录"), role: .destructive) { store.clearHistory() }
+      } message: { Text(L10n.text("正在安排或尚未结束的提醒记录会保留。")) }
     }
   }
 }
