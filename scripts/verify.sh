@@ -10,7 +10,12 @@ if ! mkdir "$lock_dir" 2>/dev/null; then
 fi
 trap 'rm -f "$lock_dir/pid"; rmdir "$lock_dir"' EXIT
 printf '%s\n' "$$" > "$lock_dir/pid"
-running_commands="$(ps -axo command | rg '(xcodebuild|swift-frontend|swift build|swift test)' | rg -F "$task_root" || true)"
+if command -v rg >/dev/null 2>&1; then
+  running_commands="$(ps -axo command | rg '(xcodebuild|swift-frontend|swift build|swift test)' | rg -F "$task_root" || true)"
+else
+  # Stock macOS includes grep; keep the process guard without requiring Homebrew.
+  running_commands="$(ps -axo command | grep -E '(xcodebuild|swift-frontend|swift build|swift test)' | grep -F "$task_root" || true)"
+fi
 if [[ -n "$running_commands" ]]; then
   printf '%s\n' '检测到本项目已有编译或验证进程，请等待结束：' "$running_commands" >&2
   exit 1
